@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
     }
 
     val pokemonList = mutableListOf<SerializedPokemon>()
-
     lateinit var pokemonSearch: PokemonAPI
 
     override fun onCreate(savedInstanceState: Bundle?) {
