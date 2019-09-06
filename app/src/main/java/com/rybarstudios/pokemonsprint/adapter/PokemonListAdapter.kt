@@ -7,6 +7,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
@@ -16,6 +17,7 @@ import com.rybarstudios.pokemonsprint.R
 import com.rybarstudios.pokemonsprint.activity.DetailsActivity
 import com.rybarstudios.pokemonsprint.model.Pokemon
 import com.rybarstudios.pokemonsprint.model.SerializedPokemon
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.pokemon_list_display_item.view.*
 import java.io.Serializable
 
@@ -34,6 +36,8 @@ class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : Recy
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
+        Picasso.get().load(pokemonList[position].sprites).into(holder.pokemonImage)
         holder.pokemonName.text = pokemonList[position].name
 
         holder.layout.setOnClickListener {
@@ -61,7 +65,8 @@ class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : Recy
     }
 
     class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val layout: LinearLayout = view.pokemon_list_layout
+        val layout: androidx.constraintlayout.widget.ConstraintLayout = view.pokemon_list_layout
+        val pokemonImage: ImageView = view.pokemon_image_item
         val pokemonName: TextView = view.textView_pokemon_list_name
     }
 }
