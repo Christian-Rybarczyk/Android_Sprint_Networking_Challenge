@@ -10,18 +10,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class DetailsActivity : AppCompatActivity() {
 
-    /*companion object {
-        val pokemonList = mutableListOf<SerializedPokemon>()
-    }*/
-
-//    lateinit var pokemon: SerializedPokemon
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
         val data = intent.getSerializableExtra("serializedPokemon") as SerializedPokemon
-//        pokemon = data
 
         val abilities = data.ability.toString().replace("[", "").replace("]", "")
         val types = data.type.toString().replace("[", "").replace("]", "")
@@ -33,10 +26,4 @@ class DetailsActivity : AppCompatActivity() {
         text_view_pokemon_abilities.text = "Abilities: $abilities"
 
     }
-
-    /*override fun onBackPressed() {
-        pokemonList.add(pokemon)
-        recyclerview_pokemon_list.adapter?.notifyDataSetChanged()
-        super.onBackPressed()
-    }*/
 }
