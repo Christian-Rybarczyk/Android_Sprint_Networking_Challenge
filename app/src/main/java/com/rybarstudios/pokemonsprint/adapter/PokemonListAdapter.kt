@@ -11,10 +11,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rybarstudios.pokemonsprint.R
+import com.rybarstudios.pokemonsprint.activity.DetailsActivity
 import com.rybarstudios.pokemonsprint.model.Pokemon
+import com.rybarstudios.pokemonsprint.model.SerializedPokemon
 import kotlinx.android.synthetic.main.pokemon_list_display_item.view.*
 
-class PokemonListAdapter(val pokemonList: MutableList<Pokemon>) : RecyclerView.Adapter<PokemonListAdapter.CustomViewHolder>() {
+class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : RecyclerView.Adapter<PokemonListAdapter.CustomViewHolder>() {
 
     var context: Context? = null
 
