@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.rybarstudios.pokemonsprint.MainActivity
 import com.rybarstudios.pokemonsprint.R
 import com.rybarstudios.pokemonsprint.activity.DetailsActivity
 import com.rybarstudios.pokemonsprint.model.Pokemon
 import com.rybarstudios.pokemonsprint.model.SerializedPokemon
 import kotlinx.android.synthetic.main.pokemon_list_display_item.view.*
+import java.io.Serializable
 
 class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : RecyclerView.Adapter<PokemonListAdapter.CustomViewHolder>() {
 
@@ -31,12 +34,11 @@ class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : Recy
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val data = pokemonList[position]
-        holder.pokemonName.text = data.name
+        holder.pokemonName.text = pokemonList[position].name
 
         holder.layout.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra("pokemon", data)
+            intent.putExtra(MainActivity.POKEMON_KEY, pokemonList[position])
             (context as Activity).startActivity(intent)
         }
 
@@ -53,6 +55,7 @@ class PokemonListAdapter(val pokemonList: MutableList<SerializedPokemon>) : Recy
                 .setNegativeButton("NO") { _, _ -> }
                 .create()
                 .show()
+            notifyDataSetChanged()
             true
         }
     }

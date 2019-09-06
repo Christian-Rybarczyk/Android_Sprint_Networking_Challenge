@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
             recyclerview_pokemon_list.adapter?.notifyDataSetChanged()
 
             val intent = Intent(this, DetailsActivity::class.java)
-            intent.putExtra("serializedPokemon", serializedPokemon)
+            intent.putExtra(POKEMON_KEY, serializedPokemon)
             startActivity(intent)
         }
     }
@@ -74,6 +74,10 @@ class MainActivity : AppCompatActivity(), Callback<Pokemon> {
 
     private fun pokemonSearch(id: String) {
         pokemonSearch.getPokemonById(id).enqueue(this)
+    }
+
+    companion object {
+        const val POKEMON_KEY = "serializedPokemon"
     }
 
 }
